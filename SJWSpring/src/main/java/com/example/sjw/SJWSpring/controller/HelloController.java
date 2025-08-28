@@ -1,11 +1,15 @@
 package com.example.sjw.SJWSpring.controller;
 
+import com.example.sjw.SJWSpring.member.bean.MemberBean;
+import com.example.sjw.SJWSpring.member.dao.MemberDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -13,13 +17,21 @@ public class HelloController {
 
     private Map<String, String> users = new HashMap<>();
 
+    @Autowired
+    private MemberDao memberDao;
+
     //1명의 유져 정보를 취득하는 API 이다.
     @GetMapping("/getUsers")
-    private Map<String, String> getUsers() {
+    private Map<String, Object> getUsers() {
 
-        users.put("1", "홍길동");
+        Map<String, Object> data = new HashMap<>();
+        data.put("result", "fail");
+        data.put("resultMsg", "처리가 실패 하였습니다.");
 
-        return users;
+        List<MemberBean> list =  memberDao.selectMemberList(null);
+        data.put("memberList", list);
+
+        return data;
     };
 
 
