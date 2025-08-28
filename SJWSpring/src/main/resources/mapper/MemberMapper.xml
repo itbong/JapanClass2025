@@ -5,14 +5,17 @@
 <!-- Dao 클래가 있는 전체 풀경로를 써주면 된다. -->
 <mapper namespace="com.example.sjw.SJWSpring.member.dao.MemberDao">
 
-    <select id="selectMember">
-        select
+    <!-- 회원 리스트를 조회한다. -->
+    <select id="selectMemberList"
+        parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean"
+        resultType="com.example.sjw.SJWSpring.member.bean.MemberBean">
+        SELECT
             id
             ,username
             ,password
             ,email
             ,role_id as roleId
-        from User
+        FROM User
     </select>
 
 
