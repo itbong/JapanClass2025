@@ -5,7 +5,15 @@
 <!-- Dao 클래가 있는 전체 풀경로를 써주면 된다. -->
 <mapper namespace="com.example.sjw.SJWSpring.member.dao.MemberDao">
 
+    <select id="selectMember">
+        select
+            id
+            ,username
+            ,password
+            ,email
+            ,role_id as roleId
+        from User
+    </select>
 
-    
 
 </mapper>
