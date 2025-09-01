@@ -18,5 +18,27 @@
         FROM User
     </select>
 
+    <!--- 회원가입 -->
+    <insert id="insertUser" parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean">
+        INSERT INTO User
+        (
+            username
+            ,password
+            ,email
+            ,role_id
+        )
+        VALUES
+        (
+            #{username}
+            ,#{password}
+            ,#{email}
+            ,#{roleId}
+        )
+    </insert>
+
+
+
+
+
 
 </mapper>
