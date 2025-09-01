@@ -9,6 +9,6 @@ public interface MemberDao {
 
     public List<MemberBean> selectMemberList(MemberBean memberBean);
 
-    public int inserUser(MemberBean memberBean);
+    public int insertUser(MemberBean memberBean);
 
 }

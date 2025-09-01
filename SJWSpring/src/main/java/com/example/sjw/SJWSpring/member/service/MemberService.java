@@ -28,7 +28,7 @@ public class MemberService {
      * @return true: 회원가입 성공, false: 회원가입 실패
      */
     public boolean insertUser(MemberBean bean) {
-        int row = memberDao.inserUser(bean);
+        int row = memberDao.insertUser(bean);
         if( row >= 1) {
             return true;
         } else {
