@@ -2,6 +2,7 @@ package com.example.sjw.SJWSpring.controller;
 
 import com.example.sjw.SJWSpring.member.bean.MemberBean;
 import com.example.sjw.SJWSpring.member.dao.MemberDao;
+import com.example.sjw.SJWSpring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class HelloController {
     private Map<String, String> users = new HashMap<>();
 
     @Autowired
-    private MemberDao memberDao;
+    private MemberService memberService;
 
     //1명의 유져 정보를 취득하는 API 이다.
     @GetMapping("/getUsers")
@@ -28,7 +29,7 @@ public class HelloController {
         data.put("result", "fail");
         data.put("resultMsg", "처리가 실패 하였습니다.");
 
-        List<MemberBean> list =  memberDao.selectMemberList(null);
+        List<MemberBean> list = memberService.getUserList();
         data.put("memberList", list);
 
         return data;
