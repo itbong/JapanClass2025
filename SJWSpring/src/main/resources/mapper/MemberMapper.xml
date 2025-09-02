@@ -43,7 +43,9 @@
         SET
             username = #{username}
             ,password = #{password}
-            ,email = #{email}
+            <if test=" email !='' and email != null " >
+                ,email = #{email}
+            </if>
         WHERE
             id=#{id}
 

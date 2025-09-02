@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +45,13 @@ public class MemberService {
      */
     public Map<String, Object> updateUser(MemberBean bean) {
         Map<String, Object> data = new HashMap<>();
+
+        if( StringUtils.isEmpty(bean.getId()) ) {
+            data.put("result", "fail");
+            data.put("resultMsg", "id 값이 존재하지 않아 업데이트 할 수 없습니다.");
+            return data;
+        }
+
         int row = 0;
         try {
             row = memberDao.updateUser(bean);
