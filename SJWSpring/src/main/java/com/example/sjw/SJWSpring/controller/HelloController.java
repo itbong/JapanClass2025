@@ -22,11 +22,19 @@ public class HelloController {
 
     //1명의 유져 정보를 취득하는 API 이다.
     @GetMapping("/getUsers")
-    private Map<String, Object> getUsers() {
-
+    private Map<String, Object> getUsers(String page) {
         Map<String, Object> data = new HashMap<>();
         data.put("result", "fail");
         data.put("resultMsg", "처리가 실패 하였습니다.");
+
+        int iPage = 0;
+        try {
+            iPage = Integer.parseInt(page);
+        } catch(Exception e){
+            e.printStackTrace();
+            data.put("resultMsg", "page 값이 숫자가 아닙니다. 숫자로만 입력해 주세요.");
+            return data;
+        }
 
         List<MemberBean> list = memberService.getUserList();
         data.put("memberList", list);
