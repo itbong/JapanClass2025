@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -54,15 +55,16 @@ public class HelloController {
         return data;
     }
 
+
     //회원수정
     @PostMapping("/updateUser")
-    private Map<String, Object> updateUser() {
-        Map<String, Object> data = new HashMap<>();
+    public Map<String, Object> updateUser(MemberBean bean) {
 
-        return data;
+        //Service 에 접근 했는데, 서비스에서 에러가 났다.
+        //Map<String, Object> data = memberService.updateUser(bean);
+
+        return memberService.updateUser(bean);
     }
-
-
 
 
 

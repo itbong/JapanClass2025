@@ -36,6 +36,18 @@
         )
     </insert>
 
+    <!-- 회원 수정 -->
+    <update id="updateUser" parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean">
+
+        UPDATE User
+        SET
+            username = #{username}
+            ,password = #{password}
+            ,email = #{email}
+        WHERE
+            id=#{id}
+
+    </update>
 
 
 

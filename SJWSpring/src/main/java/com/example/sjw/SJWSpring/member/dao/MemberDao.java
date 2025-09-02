@@ -7,8 +7,10 @@ import java.util.List;
 @Mapper
 public interface MemberDao {
 
-    public List<MemberBean> selectMemberList(MemberBean memberBean);
+     List<MemberBean> selectMemberList(MemberBean memberBean);
 
-    public int insertUser(MemberBean memberBean);
+     int insertUser(MemberBean memberBean);
+
+     int updateUser(MemberBean memberBean);
 
 }
