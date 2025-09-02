@@ -22,7 +22,7 @@ public class MemberBean {
     public int getOffset() {
         if(page == null) page = "1";
         //공식
-        return Integer.parseInt(page) - 1 * limit;
+        return (Integer.parseInt(page) - 1) * limit;
     }
 
     //가져올 갯수
