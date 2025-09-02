@@ -23,8 +23,8 @@ public class MemberService {
     /**
      * 회원가입된 유저 리스트를 취득한다.
      */
-    public List<MemberBean> getUserList() {
-        return memberDao.selectMemberList(null);
+    public List<MemberBean> getUserList(MemberBean bean) {
+        return memberDao.selectMemberList(bean);
     }
 
     /**

@@ -16,6 +16,8 @@
             ,email
             ,role_id as roleId
         FROM User
+        ORDER BY id DESC
+        LIMIT #{offset}, #{limit}
     </select>
 
     <!--- 회원가입 -->
