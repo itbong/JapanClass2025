@@ -53,6 +53,13 @@
 
     </update>
 
+    <!-- 회원 삭제 -->
+    <delete id="deleteUser" parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean">
+        DELETE FROM User
+        WHERE
+            id=#{id}
+    </delete>`
+
 
 
 

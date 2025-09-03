@@ -13,4 +13,6 @@ public interface MemberDao {
 
      int updateUser(MemberBean memberBean);
 
+     int deleteUser(MemberBean memberBean);
+
 }

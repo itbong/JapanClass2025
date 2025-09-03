@@ -1,13 +1,10 @@
 package com.example.sjw.SJWSpring.controller;
 
 import com.example.sjw.SJWSpring.member.bean.MemberBean;
-import com.example.sjw.SJWSpring.member.dao.MemberDao;
 import com.example.sjw.SJWSpring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -74,7 +71,11 @@ public class HelloController {
         return memberService.updateUser(bean);
     }
 
-
+    //회원삭제
+    @PostMapping("/deleteUser")
+    public Map<String, Object> deleteUser(MemberBean bean) {
+        return memberService.deleteUser(bean);
+    }
 
 
 }

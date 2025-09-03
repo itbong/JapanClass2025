@@ -79,5 +79,29 @@ public class MemberService {
         return data;
     }
 
+    /**
+     * 회원삭제
+     */
+    public Map<String, Object> deleteUser(MemberBean bean) {
+        Map<String, Object> data = new HashMap<>();
+
+        if( StringUtils.isEmpty(bean.getId()) ) {
+            data.put("result", "fail");
+            data.put("resultMsg", "id 값이 존재하지 않아 삭제 할 수 없습니다.");
+            return data;
+        }
+
+        int row = memberDao.deleteUser(bean);
+        if( row >= 1 ) {
+            data.put("result", "ok");
+            data.put("resultMsg", "회원삭제에 성공 하였습니다.");
+        } else {
+            data.put("result", "fail");
+            data.put("resultMsg", "회원삭제에 실패 하였습니다. 원인: 해당되는 id 값이 존재하지 않습니다.");
+        }
+
+        return data;
+    }
+
 
 };
