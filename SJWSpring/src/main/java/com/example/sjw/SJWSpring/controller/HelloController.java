@@ -2,6 +2,7 @@ package com.example.sjw.SJWSpring.controller;
 
 import com.example.sjw.SJWSpring.member.bean.MemberBean;
 import com.example.sjw.SJWSpring.member.service.MemberService;
+import com.example.sjw.SJWSpring.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,10 @@ public class HelloController {
             if(isSucc) {
                 data.put("result", "ok");
                 data.put("resultMsg", "회원가입에 성공 하였습니다.");
+
+                //토큰으로 가입된 회원의 정보를 담아서 생성
+                String authToken = JwtUtil.createToken(bean.getId(), bean.getPassword());
+                data.put("authToken", authToken);
             }
         } catch(Exception e) {
             e.printStackTrace();

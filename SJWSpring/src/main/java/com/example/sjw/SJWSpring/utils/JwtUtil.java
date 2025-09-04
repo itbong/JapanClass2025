@@ -15,13 +15,14 @@ public class JwtUtil {
     private static final long EXPIRATION_TIME = 1000 * 60 * 60;
 
     // ✅ JWT 토큰 생성
-    public static String createToken(String userId) {
+    public static String createToken(String userId, String password) {
         return Jwts.builder()
                 .setSubject("accessToken")
                 .setIssuer("sjw-app") // 발급자
                 .setIssuedAt(new Date()) // 발급 시간
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // 만료 시간
-                .claim("userId", userId) // 커스텀 클레임
+                .claim("userId", userId) // 유저ID
+                .claim("password", password) //비밀번호
                 .signWith(secretKey) // 서명
                 .compact(); // 최종 문자열 생성
     }
@@ -39,7 +40,7 @@ public class JwtUtil {
         String userId = "user123";
 
         // 1. 토큰 생성
-        String jwt = createToken(userId);
+        String jwt = createToken(userId, "safasf");
         System.out.println("생성된 JWT: " + jwt);
 
         // 2. 토큰 검증
