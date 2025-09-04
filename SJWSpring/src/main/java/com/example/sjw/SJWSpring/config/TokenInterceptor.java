@@ -1,5 +1,9 @@
 package com.example.sjw.SJWSpring.config;
 
+import com.example.sjw.SJWSpring.utils.JwtUtil;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
@@ -17,7 +21,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
         //1.request 에서 token 값을 꺼낸다.
         String authToken = request.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println("authToken: " + authToken);
+
 
         //2.token 복호화 ==> 토큰안의 실려있는 값들을 참조할 수 있다.
         if( authToken == null ) {
@@ -37,7 +41,17 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
 
         //3.token 토큰안의 값을 보고 판단을 해야한다. controller로 보낼지, back시킬지
-
+        try {
+            authToken = authToken.replace("Bearer ", "");
+            Jws<Claims> claimsJws = JwtUtil.verifyToken(authToken);
+            String userId = (String)claimsJws.getBody().get("userId");
+            String password = (String)claimsJws.getBody().get("password");
+            System.out.println("userId:" + userId + ", password: " + password);
+        } catch (ExpiredJwtException eje) {
+            eje.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return true;
     }
