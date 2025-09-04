@@ -66,10 +66,7 @@
         DELETE FROM User
         WHERE
             id=#{id}
-    </delete>`
-
-
-
+    </delete>
 
 
 </mapper>

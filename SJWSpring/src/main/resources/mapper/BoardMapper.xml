@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 클래가 있는 전체 풀경로를 써주면 된다. -->
+<mapper namespace="com.example.sjw.SJWSpring.board.dao.BoardDao">
+
+    <!-- 게시글 작성 -->
+    <insert id="insertBoard"
+       parameterType="com.example.sjw.SJWSpring.board.bean.BoardBean"
+       useGeneratedKeys="true"
+       keyProperty="boardNo"
+    >
+        INSERT INTO board
+        (
+            board_title
+            ,user_id
+            ,contents
+        )
+        VALUES
+        (
+            #{boardTitle}
+            ,#{userId}
+            ,#{contents}
+        )
+    </insert>
+
+</mapper>
