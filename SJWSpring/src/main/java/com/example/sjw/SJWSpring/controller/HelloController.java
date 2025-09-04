@@ -54,7 +54,7 @@ public class HelloController {
                 data.put("resultMsg", "회원가입에 성공 하였습니다.");
 
                 //토큰으로 가입된 회원의 정보를 담아서 생성
-                String authToken = JwtUtil.createToken(bean.getId(), bean.getPassword());
+                String authToken = JwtUtil.createToken(bean.getUsername(), bean.getPassword());
                 data.put("authToken", authToken);
             }
         } catch(Exception e) {

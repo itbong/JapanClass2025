@@ -8,8 +8,10 @@ import java.util.Date;
 
 public class JwtUtil {
 
+    // 최소 32바이트 (256비트) 이상이어야 함
+    private static final String SECRET_KEY = "my-super-secret-key-that-is-very-long-123456";
     // HS256용 시크릿 키 생성 (서버 비밀 키)
-    private static final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final Key secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
     // 토큰 유효 시간 (예: 1시간)
     private static final long EXPIRATION_TIME = 1000 * 60 * 60;
@@ -23,7 +25,7 @@ public class JwtUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // 만료 시간
                 .claim("userId", userId) // 유저ID
                 .claim("password", password) //비밀번호
-                .signWith(secretKey) // 서명
+                .signWith(secretKey, SignatureAlgorithm.HS256) // 서명
                 .compact(); // 최종 문자열 생성
     }
 
