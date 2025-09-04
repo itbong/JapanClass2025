@@ -23,6 +23,10 @@ public class BoardService {
 
         try {
             int row = boardDao.insertBoard(bean);
+            if(row >= 1) {
+                data.put("result", "ok");
+                data.put("resultMsg", "게시글 작성에 성공 하였습니다.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
