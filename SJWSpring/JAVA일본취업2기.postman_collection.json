@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/getUsers?name=",
+							"raw": "http://localhost:8081/getUsers?page=1&username=길동",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -26,8 +26,12 @@
 							],
 							"query": [
 								{
-									"key": "name",
-									"value": ""
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "username",
+									"value": "길동"
 								}
 							]
 						}
@@ -44,7 +48,7 @@
 							"formdata": [
 								{
 									"key": "username",
-									"value": "홍길동4444",
+									"value": "홍길동1919432341413213123",
 									"type": "text"
 								},
 								{
@@ -151,7 +155,58 @@
 		},
 		{
 			"name": "게시판관리",
-			"item": []
+			"item": [
+				{
+					"name": "게시글작성",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NUb2tlbiIsImlzcyI6InNqdy1hcHAiLCJpYXQiOjE3NTY5NTc5ODUsImV4cCI6MTc1Njk2MTU4NSwicGFzc3dvcmQiOiIxMjM0In0.uZMF6olRAi9rfTaZLPfzBB2IifeuOH0iGHjTgJPaFTw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "boardTitle",
+									"value": "타이틀 1111",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "contents",
+									"value": "컨텐츠 내용 이다. ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/board/writeBoard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"board",
+								"writeBoard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

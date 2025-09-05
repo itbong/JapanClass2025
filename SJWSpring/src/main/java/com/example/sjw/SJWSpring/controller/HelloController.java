@@ -82,5 +82,24 @@ public class HelloController {
         return memberService.deleteUser(bean);
     }
 
+    //회원 로그인
+    @PostMapping("/loginUser")
+    public Map<String, Object> loginUser(MemberBean bean) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("result", "fail");
+        data.put("resultMsg", "회원 로그인 실패");
+
+        MemberBean rtnBean = memberService.selectLoginMember(bean);
+        //로그인 성공
+        if(rtnBean != null) {
+            data.put("result", "ok");
+            data.put("resultMsg", "회원 로그인 성공");
+            //토큰을 생성
+            String token = JwtUtil.createToken(bean.getUsername(), bean.getPassword());
+            data.put("authToken", token);
+        }
+
+        return data;
+    }
 
 }
