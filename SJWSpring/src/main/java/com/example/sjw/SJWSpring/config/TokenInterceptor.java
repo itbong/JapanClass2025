@@ -51,7 +51,8 @@ public class TokenInterceptor implements HandlerInterceptor {
             pMemBean.setPassword(password);
             MemberBean rtnBean = memberService.selectLoginMember(pMemBean);
             if(rtnBean != null) {
-                //회원을 찾았다.
+                //회원을 찾았다. ==> 세션객체에 저장해서 보내준다.
+                request.getSession().setAttribute("userId", rtnBean.getId());
                 return true;
             }
             sendMsg(response, "존재하지 않는 유져정보의 토큰 입니다.");
