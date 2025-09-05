@@ -25,4 +25,16 @@
         )
     </insert>
 
+    <!-- 게시글 수정 -->
+    <update id="updateBoard" parameterType="com.example.sjw.SJWSpring.board.bean.BoardBean">
+        UPDATE board
+        SET
+            board_title = #{boardTitle}
+            ,contents = #{contents}
+        WHERE
+            board_no = #{boardNo}
+            AND user_id = #{userId}
+    </update>
+
+
 </mapper>

@@ -34,4 +34,29 @@ public class BoardService {
         return data;
     }
 
+    public Map<String, Object> updateBoard(BoardBean bean) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("result", "fail");
+        data.put("resultMsg", "게시글 수정에 실패 하였습니다.");
+
+        try {
+            //userId ==> 토큰에서 빼와야 한다.
+            int row = boardDao.updateBoard(bean);
+            //실패
+            if(row == 0) {
+                data.put("resultMsg", "게시글의 소유자가 아니어서 게시글 수정에 실패 하였습니다.");
+                return data;
+            }
+            //성공
+            else if(row >= 1) {
+                data.put("result", "ok");
+                data.put("resultMsg", "게시글 수정에 성공 하였습니다.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
 }

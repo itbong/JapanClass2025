@@ -18,10 +18,18 @@ public class BoardController {
     @Autowired
     private MemberService memberService;
 
-    //회원가입
+    //게시글 작성
     @PostMapping("/board/writeBoard")
     private Map<String, Object> writeBoard(BoardBean bean) {
         return boardService.writeBoard(bean);
     }
+
+
+    //게시글 수정
+    @PostMapping("/board/updateBoard")
+    private Map<String, Object> updateBoard(BoardBean bean) {
+        return boardService.updateBoard(bean);
+    }
+
 
 }

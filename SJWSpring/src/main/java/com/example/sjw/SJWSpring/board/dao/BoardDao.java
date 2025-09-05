@@ -8,4 +8,6 @@ public interface BoardDao {
 
     int insertBoard(BoardBean bean);
 
+    int updateBoard(BoardBean bean);
+
 }
