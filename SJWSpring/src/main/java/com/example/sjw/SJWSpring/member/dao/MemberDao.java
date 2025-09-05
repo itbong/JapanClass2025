@@ -11,8 +11,11 @@ public interface MemberDao {
 
      int insertUser(MemberBean memberBean);
 
-    int updateUser(MemberBean memberBean);
+     int updateUser(MemberBean memberBean);
 
-    int deleteUser(MemberBean memberBean);
+     int deleteUser(MemberBean memberBean);
+
+     //회원의 username, password 로 조회
+     MemberBean selectLoginMember(MemberBean bean);
 
 }

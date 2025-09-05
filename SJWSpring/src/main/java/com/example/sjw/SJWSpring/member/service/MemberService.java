@@ -104,5 +104,9 @@ public class MemberService {
         return data;
     }
 
+    //회원의 username, password 로 조회
+    public MemberBean selectLoginMember(MemberBean bean) {
+        return memberDao.selectLoginMember(bean);
+    }
 
 };

@@ -15,8 +15,29 @@ spring:
   devtools:
     livereload:
       enabled: true
+      port: 35729
     restart:
       enabled: true
+      # (Windows에서 감지 민감도 높이고 싶을 때)
+      poll-interval: 1s
+      quiet-period: 400ms
+      # 소스 디렉터리 직접 감시(빌드 없이도 감지되게)
+      additional-paths:
+        - src/main/resources/static
+        - src/main/resources/templates
+
+  # 정적 리소스/템플릿 즉시 반영을 위해 캐시 끄기
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          no-store: true
+      chain:
+        cache: false
+      # 소스 디렉터리를 직접 서빙(빌드 없이 변경 반영)
+      static-locations:
+        - classpath:/static/
+        - file:src/main/resources/static/
 
 #MyBatis 설정
 mybatis:

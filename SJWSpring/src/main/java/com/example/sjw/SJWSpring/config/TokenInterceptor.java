@@ -1,11 +1,13 @@
 package com.example.sjw.SJWSpring.config;
 
+import com.example.sjw.SJWSpring.member.service.MemberService;
 import com.example.sjw.SJWSpring.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -13,6 +15,10 @@ import java.io.PrintWriter;
 
 //토큰을 체크하는 인터셉터
 public class TokenInterceptor implements HandlerInterceptor {
+
+    @Autowired
+    private MemberService memberService;
+
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -48,12 +54,21 @@ public class TokenInterceptor implements HandlerInterceptor {
             String password = (String)claimsJws.getBody().get("password");
             System.out.println("userId:" + userId + ", password: " + password);
         } catch (ExpiredJwtException eje) {
+            //토큰이 만료
             eje.printStackTrace();
         } catch (Exception e) {
+            //기타에러 발생
             e.printStackTrace();
         }
 
         return true;
     }
 
-}
+
+    //response 메시지를 작성한다.
+    private void sendMsg(HttpServletResponse response, String msg) {
+        
+    }
+
+
+};//end class

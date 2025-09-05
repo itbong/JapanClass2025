@@ -28,8 +28,26 @@
         LIMIT #{offset}, #{limit}
     </select>
 
+    <!-- 회원 1건 조회 -->
+    <select id="selectLoginMember" parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean">
+        SELECT
+            id
+            ,username
+            ,password
+            ,email
+            ,role_id as roleId
+        FROM User
+        WHERE
+            username = #{username}
+            AND password = #{password}
+    </select>
+
+
+
     <!--- 회원가입 -->
-    <insert id="insertUser" parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean">
+    <insert id="insertUser" parameterType="com.example.sjw.SJWSpring.member.bean.MemberBean"
+            useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO User
         (
             username
